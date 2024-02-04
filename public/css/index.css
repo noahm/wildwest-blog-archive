@@ -248,9 +248,12 @@ h2 + .header-anchor {
 }
 
 figure {
-  width: 100%;
-  margin-left: 0;
+  margin: 0;
   text-align: center;
+}
+
+main > figure {
+  width: 100%;
 }
 
 figure img {
