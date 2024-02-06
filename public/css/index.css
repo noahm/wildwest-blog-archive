@@ -78,6 +78,24 @@ li {
   line-height: 1.5;
 }
 
+figure {
+  margin: 0;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-grey-80);
+  font-size: 90%;
+}
+
 a[href] {
   color: var(--text-color-link);
 }
@@ -92,8 +110,11 @@ a[href]:active {
 main {
   padding: 1rem;
 }
-main :first-child {
+main > :first-child {
   margin-top: 0;
+}
+main > figure {
+  width: 100%;
 }
 
 main h1 {
@@ -160,12 +181,13 @@ nav {
   list-style: none;
   padding: 0;
   padding-left: 1.5rem;
+  counter-reset: start-from 0;
 }
 .postlist-item {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  counter-increment: start-from -1;
+  counter-increment: start-from 1;
   margin-bottom: 1em;
 }
 .postlist-item:before {
@@ -175,14 +197,6 @@ nav {
   line-height: 100%;
   text-align: right;
   margin-left: -1.5rem;
-}
-.postlist-date,
-.postlist-item:before {
-  font-size: 0.8125em; /* 13px /16 */
-  color: var(--color-gray-90);
-}
-.postlist-date {
-  word-spacing: -0.5px;
 }
 .postlist-link {
   font-size: 1.1875em; /* 19px /16 */
@@ -212,15 +226,17 @@ nav {
 
 /* Tags list */
 .post-metadata {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   gap: 0.5em;
   list-style: none;
   padding: 0;
   margin: 0;
+  margin-top: -1em;
 }
-.post-metadata time {
-  margin-right: 1em;
+time {
+  color: var(--color-grey-80);
+  font-style: italic;
 }
 
 /* Direct Links / Markdown Headers */
@@ -245,25 +261,4 @@ a[href].header-anchor:focus,
 
 h2 + .header-anchor {
   font-size: 1.5em;
-}
-
-figure {
-  margin: 0;
-  text-align: center;
-}
-
-main > figure {
-  width: 100%;
-}
-
-figure img {
-  max-width: 100%;
-  height: auto;
-}
-
-figcaption {
-  text-align: center;
-  font-style: italic;
-  color: var(--color-grey-80);
-  font-size: 90%;
 }

@@ -1,6 +1,6 @@
 ---
 layout: layouts/home.njk
-numberOfLatestPostsToShow: 12
+numberOfLatestPostsToShow: 25
 ---
 {% set postsCount = collections.posts | length %}
 {% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
