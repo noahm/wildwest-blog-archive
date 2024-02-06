@@ -98,22 +98,26 @@ module.exports = function (eleventyConfig) {
       let metadata = await Image(
         relativeToInputPath(this.page.inputPath, src),
         {
-          widths: [size],
+          widths: [size * 2, size],
           formats: ["auto"],
           outputDir: path.join(eleventyConfig.dir.output, "img"),
         },
       );
 
-      let imageAttributes = {
-        alt: alt || "alt-text",
-        loading: "lazy",
-        decoding: "async",
-      };
+      // put the smallest size last, so the size of the img tag gets those dimensions
+      metadata.jpeg.sort((a, b) => {
+        return b.width - a.width;
+      });
 
       // You bet we throw an error on a missing alt (alt="" works okay)
       return (
         "<figure>" +
-        Image.generateHTML(metadata, imageAttributes) +
+        Image.generateHTML(metadata, {
+          alt: alt || "alt-text",
+          sizes: "100vw",
+          loading: "lazy",
+          decoding: "async",
+        }) +
         (alt ? `<figcaption>${alt}</figcaption></figure>` : "</figure>")
       );
     },
